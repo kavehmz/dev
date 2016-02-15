@@ -22,7 +22,6 @@ After this, vagrant can build your VM and it will clone all your repositories.
 
 Later if you like, you can also copy your ssh key to be used in this VM.
 
-```$ cp ~/.ssh/id_rsa root/.ssh/
-```
+```$ cp ~/.ssh/id_rsa root/.ssh/```
 
 I have added .gitignore in different places to make sure no secret gets committed, but still be very careful if you want to do a change in this repo and commit it.

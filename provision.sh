@@ -41,7 +41,7 @@ fi
 if [ ! -d /opt/go ]
 then
 	echo "installing go"
-	curl --silent https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz -o /tmp/go.tar.gz
+	curl --silent https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
 	tar --gzip -xf /tmp/go.tar.gz -C /opt
 	mkdir -p /opt/gopath
 	. ~/.bash_profile

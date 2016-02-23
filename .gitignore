@@ -1,0 +1,9 @@
+home/share/secret/
+.*
+id_rsa
+id_dsa
+.vagrant
+home/git/*
+home/root/*
+opt/
+home/projects/

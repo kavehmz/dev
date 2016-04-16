@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 [[ "$(uname -a)" == *"Ubuntu"* ]] && add-apt-repository ppa:nviennot/tmate
 [[ "$(uname -a)" == *"Debian"* ]] && echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
 apt-get update
-apt-get install -y libjson-perl vim emacs tmate git httpie locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep
+apt-get install -y libjson-perl vim emacs tmate git httpie locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools-3.16
 apt-get remote --pruge -y ghostscript
 apt-get -y upgrade
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
@@ -41,7 +41,7 @@ fi
 if [ ! -d /opt/go ]
 then
 	echo "installing go"
-	curl --silent https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz -o /tmp/go.tar.gz
+	curl --silent https://storage.googleapis.com/golang/go1.6.1.linux-amd64.tar.gz -o /tmp/go.tar.gz
 	tar --gzip -xf /tmp/go.tar.gz -C /opt
 	mkdir -p /opt/gopath
 	. ~/.bash_profile
@@ -55,13 +55,14 @@ fi
 
 [[ ! -d ~/.emacs.d ]] && echo "install emacs spacemacs config" && git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
-
 if [ ! -d /opt/hub ]
 then
 	git clone https://github.com/github/hub.git /opt/hub
 	cd /opt/hub/
 	script/build
 fi
+
+[ ! -d /opt/flame ] && git clone https://github.com/brendangregg/FlameGraph.git /opt/flame
 
 if [ "$(which jekyll)" == "" ]
 then

@@ -8,7 +8,6 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--usb", "off"]
   end
 
-  config.vm.network "forwarded_port", guest: 6379, host: 6379, auto_correct: true
   config.vm.box = "ARTACK/debian-jessie"
   config.vm.hostname = "ferengi"
 

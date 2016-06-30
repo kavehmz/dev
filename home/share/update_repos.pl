@@ -19,7 +19,7 @@ foreach my $k (@{$repos}) {
 	my $fn = $k->{full_name};
 	print "Cloning $fn: [",$count, "/", scalar @$repos, "]\n";
 	$authorized_repos->{"/home/git/$fn"} = 1;
-	if ($fn !~ /($regentmarket\/kavehmz|kmzarc|enoox)/) {
+	if ($fn !~ /(regentmarket\/|kavehmz|kmzarc|enoox)/) {
 		print "Skipping [$fn]\n";
 		next;
 	}

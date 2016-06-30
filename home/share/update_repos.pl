@@ -19,6 +19,10 @@ foreach my $k (@{$repos}) {
 	my $fn = $k->{full_name};
 	print "Cloning $fn: [",$count, "/", scalar @$repos, "]\n";
 	$authorized_repos->{"/home/git/$fn"} = 1;
+	if ($fn !~ /($regentmarket\/kavehmz|kmzarc|enoox)/) {
+		print "Skipping [$fn]\n";
+		next;
+	}
 	next if (-d "/home/git/$fn");
 	print `git clone https://$token\@github.com/$fn /home/git/$fn`;
 	`cd /home/git/$fn;git remote set-url origin git\@github.com:$fn.git`;

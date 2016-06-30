@@ -12,14 +12,14 @@ while ($a = JSON::from_json(`curl --silent 'https://api.github.com/user/repos?ac
 	push @{$repos}, @$a;
 }
 
-
 my $authorized_repos = {};
 foreach my $k (@{$repos}) {
 	$count++;
 	my $fn = $k->{full_name};
 	print "Cloning $fn: [",$count, "/", scalar @$repos, "]\n";
 	$authorized_repos->{"/home/git/$fn"} = 1;
-	if ($fn !~ /(regentmarket\/|kavehmz|kmzarc|enoox)/) {
+
+	if ($fn !~ /^(regentmarkets\/|kavehmz|kmzarc|enoox)/ or ($fn =~ /^kavehmz/ and (grep {$_->{full_name} eq 'regentmarkets/'. $k->{name} } @{$repos}))) {
 		print "Skipping [$fn]\n";
 		next;
 	}

@@ -41,7 +41,7 @@ fi
 if [ ! -d /opt/go ]
 then
 	echo "installing go"
-	curl --silent https://storage.googleapis.com/golang/go1.6.1.linux-amd64.tar.gz -o /tmp/go.tar.gz
+	curl --silent https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz -o /tmp/go.tar.gz
 	tar --gzip -xf /tmp/go.tar.gz -C /opt
 	mkdir -p /opt/gopath
 	. ~/.bash_profile
@@ -91,5 +91,14 @@ End
 fi
 
 perl /home/share/update_repos.pl
+
+if [ ! -d /opt/perl5 ]
+then
+	export PERLBREW_ROOT=/opt/perl5
+	mkdir /opt/perl5 && curl -L http://install.perlbrew.pl | bash
+	source /opt/perl5/etc/bashrc
+	perlbrew install-cpanm
+	grep "#perlbrewrc" ~/.bash_profile -q || echo "source /opt/perl5/etc/bashrc #perlbrewrc" >> ~/.bash_profile
+fi
 
 exit 0

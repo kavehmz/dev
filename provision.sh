@@ -5,9 +5,10 @@ export DEBIAN_FRONTEND=noninteractive
 [[ "$(uname -a)" == *"Ubuntu"* ]] && add-apt-repository ppa:nviennot/tmate
 [[ "$(uname -a)" == *"Debian"* ]] && echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
 apt-get update
-apt-get install -y libjson-perl vim emacs tmate git httpie locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools-3.16
+apt-get install -y libjson-perl vim emacs tmux tmate git httpie locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools-3.16
 apt-get remote --pruge -y ghostscript
 apt-get -y upgrade
+apt-get -t jessie-backports install -y redis-server
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
 
 if [ ! -f /root/.ssh ]
@@ -99,6 +100,7 @@ then
 	source /opt/perl5/etc/bashrc
 	perlbrew install-cpanm
 	grep "#perlbrewrc" ~/.bash_profile -q || echo "source /opt/perl5/etc/bashrc #perlbrewrc" >> ~/.bash_profile
+	perlbrew install --notest blead
 fi
 
 exit 0

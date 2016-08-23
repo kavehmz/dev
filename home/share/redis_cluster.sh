@@ -20,7 +20,23 @@ EOM
 done
 
 apt-get install -y ruby gem
-gem install redis
+ (gem list --local|grep -q redis) || gem install redis
+
+for i in {1..5}
+do
+	echo $i
+	redis-cli -p 7000 CLUSTER MEET 127.0.0.1 700$i
+done
+
+echo "waiting for redis instances to meet"
+sleep 1
 
 echo "setting up a sample redis cluster"
-/usr/share/doc/redis-tools/examples/redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005
+for i in {0..2}
+do
+	echo $i
+	SLAVE=$(($i+3))
+	MASTERNODE=$(redis-cli -p 7000 cluster nodes|grep 127.0.0.1:700$i|cut -d' ' -f1)
+	echo "$SLAVE will be slave of $MASTERNODE"
+	redis-cli -p 700$SLAVE CLUSTER REPLICATE $MASTERNODE
+done

@@ -26,7 +26,7 @@ do
 done
 
 echo "waiting for redis instances to meet"
-sleep 1
+sleep 3
 
 echo "setting up a sample redis cluster"
 for i in {0..2}
@@ -37,3 +37,11 @@ do
 	echo "$SLAVE will be slave of $MASTERNODE"
 	redis-cli -p 700$SLAVE CLUSTER REPLICATE $MASTERNODE
 done
+
+echo 'set slots'
+SLOTS='';for i in {0..5000};do SLOTS="$SLOTS $i";done
+redis-cli -p 7000 CLUSTER ADDSLOTS $SLOTS
+SLOTS='';for i in {5001..10000};do SLOTS="$SLOTS $i";done
+redis-cli -p 7001 CLUSTER ADDSLOTS $SLOTS
+SLOTS='';for i in {10001..16383};do SLOTS="$SLOTS $i";done
+redis-cli -p 7002 CLUSTER ADDSLOTS $SLOTS

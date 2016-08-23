@@ -1,7 +1,7 @@
 # To establish a cluster of redis servers with 3 masters and 3 slaves just run this script in an empty directory.
 # Redis clusters will be created and started on ports 700[0-5].
 
-for i in {0..6}
+for i in {0..5}
 do
 	DNAME=700$i
 	echo $DNAME

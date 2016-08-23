@@ -19,9 +19,6 @@ EOM
 	tmux new -s $DNAME -d -c $DNAME 'redis-server redis.conf'
 done
 
-apt-get install -y ruby gem
- (gem list --local|grep -q redis) || gem install redis
-
 for i in {1..5}
 do
 	echo $i

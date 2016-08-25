@@ -2,11 +2,12 @@
 
 # setup apt
 export DEBIAN_FRONTEND=noninteractive
-apt-get install apt-transport-https ca-certificates
+apt-get install -y apt-transport-https ca-certificates
 apt-get update
+apt-get -y upgrade
 
 # adding extra repos
-echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
+echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
 echo "deb https://apt.dockerproject.org/repo debian-jessie main" > /etc/apt/sources.list.d/docker.list
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/apt/sources.list.d/postgresql.list
@@ -14,7 +15,6 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 
 # install basic commands
 apt-get update
-apt-get -y upgrade
 apt-get install -y docker-engine libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
 apt-get remove --purge -y ghostscript
 apt-get -t jessie-backports install -y redis-server

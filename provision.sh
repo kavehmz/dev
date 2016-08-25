@@ -23,10 +23,15 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 
 # install basic commands
 apt-get update
-apt-get install -y docker-engine libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
+apt-get install -y libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
 apt-get remove --purge -y ghostscript
 apt-get -t jessie-backports install -y redis-server
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
+
+# installing docker and its tools
+apt-get install -y docker-engine
+curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 if [ ! -f /home/share/secret/github_token ]
 then

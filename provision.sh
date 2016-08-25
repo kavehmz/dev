@@ -1,5 +1,13 @@
 #!/bin/bash -x
 
+# enable access to root
+if [ ! -f /root/.ssh ]
+then
+	mkdir /root/.ssh
+	cp /home/vagrant/.ssh/authorized_keys /root/.ssh/authorized_keys
+	chmod 600 /root/.ssh/ -R
+fi
+
 # setup apt
 export DEBIAN_FRONTEND=noninteractive
 apt-get install -y apt-transport-https ca-certificates
@@ -19,13 +27,6 @@ apt-get install -y docker-engine libjson-perl vim emacs tmux tmate git locate cu
 apt-get remove --purge -y ghostscript
 apt-get -t jessie-backports install -y redis-server
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
-
-if [ ! -f /root/.ssh ]
-then
-	mkdir /root/.ssh
-	cp /home/vagrant/.ssh/authorized_keys /root/.ssh/authorized_keys
-	chmod 600 /root/.ssh/ -R
-fi
 
 if [ ! -f /home/share/secret/github_token ]
 then

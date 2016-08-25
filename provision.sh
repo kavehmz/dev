@@ -2,10 +2,16 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-[[ "$(uname -a)" == *"Ubuntu"* ]] && add-apt-repository ppa:nviennot/tmate
-[[ "$(uname -a)" == *"Debian"* ]] && echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
 apt-get update
-apt-get install -y libjson-perl vim emacs tmux tmate git httpie locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools-3.16
+apt-get install apt-transport-https ca-certificates
+
+echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
+
+echo "deb https://apt.dockerproject.org/repo debian-jessie main" > /etc/apt/sources.list.d/docker.list
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+apt-get update
+apt-get install -y docker-engine libjson-perl vim emacs tmux tmate git httpie locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools-3.16
 apt-get remote --pruge -y ghostscript
 apt-get -y upgrade
 apt-get -t jessie-backports install -y redis-server

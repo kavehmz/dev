@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--usb", "off"]
   end
 
-  config.vm.box = "ARTACK/debian-jessie"
+  config.vm.box = "debian/contrib-jessie64"
   config.vm.hostname = "ferengi"
 
   config.vm.synced_folder "home/share", "/home/share"

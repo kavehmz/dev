@@ -24,6 +24,11 @@ alias tidy="find lib t -name '*.p[lm]' -o -name '*.t' | xargs perl -I /usr/local
 alias sa='ssh-agent -k 2> /dev/null;eval "$(ssh-agent -s)";ssh-add ~/.ssh/id_rsa'
 alias ct='ctags -R *'
 
+alias clsps='docker ps -a |tail -n +2|tr -s " "|cut -d" " -f 1|xargs docker rm -f'
+alias clsim='docker images|tail -n +2|tr -s " "|cut -d" " -f 3|xargs docker rmi -f'
+alias d='docker'
+alias dc='docker-compose'
+
 source /home/share/git-prompt.sh
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 

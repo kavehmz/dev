@@ -59,8 +59,10 @@ if [ ! -d /opt/go ]
 then
 	echo "installing go"
 	curl --silent https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz -o /tmp/go.tar.gz
-	tar --gzip -xf /tmp/go.tar.gz -C /opt
-	mkdir -p /opt/gopath
+	mkdir /opt/go/goroot
+	tar --gzip -xf /tmp/go.tar.gz -C /tmp
+	mv /tmp/go/ /opt/go/goroot/
+	mkdir -p /opt/go/gopath
 	. ~/.bash_profile
 fi
 
@@ -118,5 +120,12 @@ then
 	grep "#perlbrewrc" ~/.bash_profile -q || echo "source /opt/perl5/etc/bashrc #perlbrewrc" >> ~/.bash_profile
 	perlbrew install --notest blead
 fi
+
+echo "install google cloud sdk"
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+apt-get update && apt-get install -y google-cloud-sdk
+
 
 exit 0

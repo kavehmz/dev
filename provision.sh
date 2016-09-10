@@ -59,9 +59,9 @@ if [ ! -d /opt/go ]
 then
 	echo "installing go"
 	curl --silent https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz -o /tmp/go.tar.gz
-	mkdir /opt/go/goroot
+	mkdir -p /opt/go/goroot
 	tar --gzip -xf /tmp/go.tar.gz -C /tmp
-	mv /tmp/go/ /opt/go/goroot/
+	mv /tmp/go/* /opt/go/goroot/
 	mkdir -p /opt/go/gopath
 	. ~/.bash_profile
 fi
@@ -126,6 +126,6 @@ export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 apt-get update && apt-get install -y google-cloud-sdk
-
+go get google.golang.org/appengine/cmd/aedeploy
 
 exit 0

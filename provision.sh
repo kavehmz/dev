@@ -23,7 +23,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 
 # install basic commands
 apt-get update
-apt-get install -y libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
+apt-get install -y unzip libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
 apt-get remove --purge -y ghostscript
 apt-get -t jessie-backports install -y redis-server ansible
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
@@ -121,11 +121,24 @@ then
 	perlbrew install --notest blead
 fi
 
-echo "install google cloud sdk"
-export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-apt-get update && apt-get install -y google-cloud-sdk
-go get google.golang.org/appengine/cmd/aedeploy
+
+if [ "$(which gcloud)" == "" ]
+then
+	echo "install google cloud sdk"
+	export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+	echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+	apt-get update && apt-get install -y google-cloud-sdk
+	go get google.golang.org/appengine/cmd/aedeploy
+fi
+
+if [ "$(which aws)" == "" ]
+then
+	echo "installing aws cli"
+	cd /tmp
+	wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
+	unzip awscli-bundle.zip
+	./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+fi
 
 exit 0

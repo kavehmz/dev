@@ -25,7 +25,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 apt-get update
 apt-get install -y libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
 apt-get remove --purge -y ghostscript
-apt-get -t jessie-backports install -y redis-server
+apt-get -t jessie-backports install -y redis-server ansible
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
 
 # installing docker and its tools

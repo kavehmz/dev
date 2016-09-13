@@ -10,7 +10,7 @@ gs() {
 
 cdg() {
     cd /home/git
-    [ "$1" != "" ] && cd "$1"
+    [ "$1" != "" ] && cd $1
 }
 
 alias g=git

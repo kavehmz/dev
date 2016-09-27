@@ -23,7 +23,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 
 # install basic commands
 apt-get update
-apt-get install -y jq unzip libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
+apt-get install -y cloc jq unzip libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
 apt-get remove --purge -y ghostscript
 apt-get -t jessie-backports install -y redis-server ansible
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
@@ -143,6 +143,14 @@ then
 	wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
 	unzip awscli-bundle.zip
 	./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+fi
+
+if [ "$(which protoc)" == "" ]
+then
+	curl -Lso /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip
+	cd /tmp
+	unzip protoc.zip
+	cp bin/protoc /usr/bin/
 fi
 
 exit 0

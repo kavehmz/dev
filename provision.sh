@@ -23,7 +23,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 
 # install basic commands
 apt-get update
-apt-get install -y unzip libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
+apt-get install -y jq unzip libjson-perl vim emacs tmux tmate git locate curl cpanminus exuberant-ctags vim-nox htop iotop atop sysdig ack-grep graphviz linux-tools
 apt-get remove --purge -y ghostscript
 apt-get -t jessie-backports install -y redis-server ansible
 cpanm  -L /usr/local/perl Perl::Tidy@20140711
@@ -121,7 +121,6 @@ then
 	perlbrew install --notest blead
 fi
 
-
 if [ "$(which gcloud)" == "" ]
 then
 	echo "install google cloud sdk"
@@ -130,6 +129,11 @@ then
 	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 	apt-get update && apt-get install -y google-cloud-sdk
 	go get google.golang.org/appengine/cmd/aedeploy
+	# Not enough RAM to install it through source, so using the gcloud installation
+	sed -i -e 's/true/false/' /usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/config.json
+	# gcloud components install kubectl
+	# ln -s /usr/lib/google-cloud-sdk/bin/kubectl /usr/bin/kubectl
+	# kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl
 fi
 
 if [ "$(which aws)" == "" ]

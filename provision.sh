@@ -147,10 +147,16 @@ fi
 
 if [ "$(which protoc)" == "" ]
 then
-	curl -Lso /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip
-	cd /tmp
-	unzip protoc.zip
-	cp bin/protoc /usr/bin/
+	apt-get install -y autoconf automake libtool curl make g++ unzip
+	cd /opt/
+	git clone git@github.com:google/protobuf.git
+	cd protobuf/
+	./autogen.sh
+	./configure
+	make
+	make install
+	ldconfig
+	go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 fi
 
 exit 0

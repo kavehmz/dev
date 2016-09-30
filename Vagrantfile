@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "1250"]
+    vb.customize ["modifyvm", :id, "--memory", "1750"]
     vb.customize ["modifyvm", :id, "--cpus", "2"]
     vb.customize ["modifyvm", :id, "--usb", "off"]
   end

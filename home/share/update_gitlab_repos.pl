@@ -21,13 +21,13 @@ foreach my $k (@{$repos}) {
 	$count++;
 	my $fn = $k->{path_with_namespace};
 	print "Cloning $fn: [",$count, "/", scalar @$repos, "]\n";
-	$authorized_repos->{"/home/git/$fn"} = 1;
+	$authorized_repos->{"/home/projects/src/$site/$fn"} = 1;
 
-	next if (-d "/home/git/$fn");
-	print `git clone git\@$site:$fn.git /home/git/$fn`;
+	next if (-d "/home/projects/src/$site/$fn");
+	print `git clone git\@$site:$fn.git /home/projects/src/$site/$fn`;
 }
 
-foreach my $fn (split "\n", `find /home/git/ -maxdepth 2 -mindepth 2 -type d `) {
+foreach my $fn (split "\n", `find /home/projects/src/$site/ -maxdepth 2 -mindepth 2 -type d `) {
 	if (not exists $authorized_repos->{$fn}) {
 		print "You have no access to this repo anymore!! : $fn\n";
 	}

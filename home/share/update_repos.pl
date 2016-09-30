@@ -17,18 +17,20 @@ foreach my $k (@{$repos}) {
 	$count++;
 	my $fn = $k->{full_name};
 	print "Cloning $fn: [",$count, "/", scalar @$repos, "]\n";
-	$authorized_repos->{"/home/git/$fn"} = 1;
+	$authorized_repos->{"/home/projects/src/github.com/$fn"} = 1;
 
 	if ($fn !~ /^(regentmarkets\/|kavehmz|kmzarc|enoox)/ or ($fn =~ /^kavehmz/ and (grep {$_->{full_name} eq 'regentmarkets/'. $k->{name} } @{$repos}))) {
 		print "Skipping [$fn]\n";
 		next;
 	}
-	next if (-d "/home/git/$fn");
-	print `git clone https://$token\@github.com/$fn /home/git/$fn`;
-	`cd /home/git/$fn;git remote set-url origin git\@github.com:$fn.git`;
+	next if (-d "/home/projects/src/github.com/$fn");
+	print `git clone https://$token\@github.com/$fn /home/projects/src/github.com/$fn`;
+	`cd /home/projects/src/github.com/$fn;git remote set-url origin git\@github.com:$fn.git`;
 }
 
-foreach my $fn (split "\n", `find /home/git/ -maxdepth 2 -mindepth 2 -type d `) {
+foreach my $fn (split "\n", `find /home/projects/src/github.com/ -maxdepth 2 -mindepth 2 -type d `) {
+	next if ($fn !~ /^\/home\/projects\/src\/github\.com\/(regentmarkets\/|kavehmz|kmzarc|enoox)/);
+
 	if (not exists $authorized_repos->{$fn}) {
 		print "You have no access to this repo anymore!! : $fn\n";
 	}

@@ -4,12 +4,13 @@ export GOPATH=/opt/go/gopath
 export PATH="$PATH:$SCALA_HOME/bin:$GOROOT/bin:$GOPATH/bin"
 export EDITOR=vim
 
-gs() {
-    for i in *; do [ -d $i ] || continue;echo "repo:$i"; cd "$i"; eval git ${*:1};cd ..;done
+cdg() {
+    cd ~/dev/home/projects/src/github.com
+    [ "$1" != "" ] && cd $1
 }
 
-cdg() {
-    cd /home/git
+cdp() {
+    cd ~/dev/home/projects/src
     [ "$1" != "" ] && cd $1
 }
 

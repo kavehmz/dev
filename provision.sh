@@ -99,7 +99,7 @@ cat <<End > /opt/zram.sh
 set -x
 [ -f /sys/block/zram0/disksize ] && exit 0
 /sbin/modprobe zram
-echo 256M > /sys/block/zram0/disksize
+echo 768M > /sys/block/zram0/disksize
 /sbin/mkswap /dev/zram0
 /sbin/swapoff -a
 /sbin/swapon /dev/zram0
@@ -108,8 +108,6 @@ End
 	echo "@reboot root /opt/zram.sh" > /etc/cron.d/zram
 	/opt/zram.sh
 fi
-
-perl /home/share/update_repos.pl
 
 if [ ! -d /opt/perl5 ]
 then
@@ -158,5 +156,7 @@ then
 	ldconfig
 	go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 fi
+
+#perl /home/share/update_repos.pl
 
 exit 0

@@ -5,12 +5,12 @@ export PATH="$PATH:$SCALA_HOME/bin:$GOROOT/bin:$GOPATH/bin"
 export EDITOR=vim
 
 cdg() {
-    cd ~/dev/home/projects/src/github.com
+    cd /home/projects/src/github.com
     [ "$1" != "" ] && cd $1
 }
 
 cdp() {
-    cd ~/dev/home/projects/src
+    cd /home/projects/src
     [ "$1" != "" ] && cd $1
 }
 

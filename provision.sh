@@ -10,8 +10,8 @@ fi
 
 # setup apt
 export DEBIAN_FRONTEND=noninteractive
-apt-get install -y apt-transport-https ca-certificates
 apt-get update
+apt-get install -y apt-transport-https ca-certificates
 apt-get -y upgrade
 
 # adding extra repos
@@ -109,10 +109,11 @@ End
 	/opt/zram.sh
 fi
 
-if [ ! -d /opt/perl5 ]
+if [ ! -f /opt/perl5/etc/bashrc ]
 then
 	export PERLBREW_ROOT=/opt/perl5
-	mkdir /opt/perl5 && curl -L http://install.perlbrew.pl | bash
+	mkdir /opt/perl5
+	curl -L http://install.perlbrew.pl | bash
 	source /opt/perl5/etc/bashrc
 	perlbrew install-cpanm
 	grep "#perlbrewrc" ~/.bash_profile -q || echo "source /opt/perl5/etc/bashrc #perlbrewrc" >> ~/.bash_profile
@@ -147,7 +148,7 @@ if [ "$(which protoc)" == "" ]
 then
 	apt-get install -y autoconf automake libtool curl make g++ unzip
 	cd /opt/
-	git clone git@github.com:google/protobuf.git
+	git clone https://github.com/google/protobuf.git
 	cd protobuf/
 	./autogen.sh
 	./configure

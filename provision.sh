@@ -99,7 +99,7 @@ cat <<End > /opt/zram.sh
 set -x
 [ -f /sys/block/zram0/disksize ] && exit 0
 /sbin/modprobe zram
-echo 768M > /sys/block/zram0/disksize
+echo 256M > /sys/block/zram0/disksize
 /sbin/mkswap /dev/zram0
 /sbin/swapoff -a
 /sbin/swapon /dev/zram0

@@ -1,6 +1,6 @@
 export GOROOT=/opt/go/goroot
 export SCALA_HOME=/opt/scala
-export GOPATH=/opt/go/gopath
+export GOPATH=/home/projects
 export PATH="$PATH:$SCALA_HOME/bin:$GOROOT/bin:$GOPATH/bin"
 export EDITOR=vim
 

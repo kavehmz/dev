@@ -14,7 +14,9 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "home/share", "/home/share"
   config.vm.synced_folder "root", "/root", owner: "root", group: "root"
   config.vm.synced_folder "home/projects/src/github.com/kavehmz", "/home/projects/src/github.com/kavehmz"
-  config.vm.synced_folder "home/projects/src/#{ENV['PRIVATE_GITLAB']}", "/home/projects/src/#{ENV['PRIVATE_GITLAB']}"
+  if ENV['PRIVATE_GITLAB'] != ''
+    config.vm.synced_folder "home/projects/src/#{ENV['PRIVATE_GITLAB']}", "/home/projects/src/#{ENV['PRIVATE_GITLAB']}"
+  end
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box

@@ -62,7 +62,6 @@ then
 	mkdir -p /opt/go/goroot
 	tar --gzip -xf /tmp/go.tar.gz -C /tmp
 	mv /tmp/go/* /opt/go/goroot/
-	mkdir -p /opt/go/gopath
 	. ~/.bash_profile
 fi
 

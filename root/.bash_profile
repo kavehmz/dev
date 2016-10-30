@@ -14,6 +14,14 @@ cdp() {
     [ "$1" != "" ] && cd $1
 }
 
+dl() {
+    set -x
+    mkdir -p ~/dl
+    L=$(python ~/.yturl/yturl.py "$1")
+    curl -o ~/dl/"$2" "$L"
+    set +x
+}
+
 alias g=git
 alias gg="git grep -i --color"
 alias ff="find .|grep -i"

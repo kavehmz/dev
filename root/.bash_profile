@@ -15,11 +15,8 @@ cdp() {
 }
 
 dl() {
-    set -x
-    mkdir -p ~/dl
     L=$(python ~/.yturl/yturl.py "$1")
-    curl -o ~/dl/"$2" "$L"
-    set +x
+    curl -o ~/"$2" "$L"
 }
 
 alias g=git

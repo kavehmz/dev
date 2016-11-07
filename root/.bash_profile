@@ -16,7 +16,8 @@ cdp() {
 
 dl() {
     L=$(python ~/.yturl/yturl.py "$1")
-    curl -o ~/"$2" "$L"
+    echo $L
+    curl -C - -o ~/"$2" "$L"
 }
 
 alias g=git

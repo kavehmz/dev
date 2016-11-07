@@ -35,6 +35,7 @@ alias clsps='docker ps -a |tail -n +2|tr -s " "|cut -d" " -f 1|xargs docker rm -
 alias clsim='docker images|tail -n +2|tr -s " "|cut -d" " -f 3|xargs docker rmi -f'
 alias d='docker'
 alias dc='docker-compose'
+alias lintit='gometalinter --deadline=15s --line-length=200  --enable-all ./...'
 
 source /home/share/git-prompt.sh
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '

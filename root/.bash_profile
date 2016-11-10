@@ -6,12 +6,12 @@ export EDITOR=vim
 
 cdg() {
     cd /home/projects/src/github.com
-    [ "$1" != "" ] && cd $1
+    [ "$1" != "" ] && cd $(echo $1|sed 's/\//*\//'|sed 's/$/*/')
 }
 
 cdp() {
     cd /home/projects/src
-    [ "$1" != "" ] && cd $1
+    [ "$1" != "" ] && cd $(echo $1|sed 's/\//*\//'|sed 's/$/*/')
 }
 
 dl() {

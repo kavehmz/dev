@@ -24,6 +24,7 @@ go get -u -v github.com/golang/lint/golint
 go get -u -v golang.org/x/tools/cmd/gorename
 go get -u -v golang.org/x/tools/cmd/guru
 go get -u -v golang.org/x/tools/cmd/gotype
+go get -u -v github.com/golang/glog
 
 go get -u -v github.com/rogpeppe/godef
 go get -u -v github.com/lukehoban/go-outline

@@ -16,6 +16,8 @@ then
 	git checkout -b release-branch.custom_master
 
 	echo go1.99.99 > VERSION
+	git add VERSION
+	git commit -am 'Fake Version'
 	git tag -d go1.99.99
 	git tag -am 'customer tag' go1.99.99
 fi

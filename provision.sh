@@ -65,7 +65,7 @@ then
 	. ~/.bash_profile
 fi
 
-if [ ! - ~/.spf13-vim-3  ]
+if [ ! -d ~/.spf13-vim-3  ]
 then
 	sh <(curl --silent https://j.mp/spf13-vim3 -L)
 	vim +GoInstallBinaries +q

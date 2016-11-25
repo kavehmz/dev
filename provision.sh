@@ -58,7 +58,7 @@ fi
 if [ ! -d /opt/go ]
 then
 	echo "installing go"
-	curl --silent https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz -o /tmp/go.tar.gz
+	curl --silent https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz -o /tmp/go.tar.gz
 	mkdir -p /opt/go/goroot
 	tar --gzip -xf /tmp/go.tar.gz -C /tmp
 	mv /tmp/go/* /opt/go/goroot/
@@ -157,6 +157,6 @@ then
 	go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 fi
 
-#perl /home/share/update_repos.pl
+# perl /home/share/update_repos.pl
 
 exit 0

@@ -1,5 +1,4 @@
 #!/bin/bash -i
-set -e
 ROLES=$(aws iam list-roles|grep Arn|cut -d'"' -f4)
 [ "$1" == 'list' ] && echo "$ROLES" && exit 0
 
@@ -14,13 +13,17 @@ MFA_SERIAL_NUMBER=$(echo $ROLE_ARN|cut -d':' -f-5):mfa/$USER
 
 SESSION=$(aws sts assume-role --role-arn "$ROLE_ARN" --role-session-name s3-access-example --serial-number "$MFA_SERIAL_NUMBER" --token-code "$MFA_TOKEN")
 
-if [ "$SESSION" != "a" ]
+if [ "$SESSION" != "" ]
 then
     export AWS_ACCESS_KEY_ID=$(echo "$SESSION"|grep AccessKeyId|cut -d'"' -f 4)
     export AWS_SECRET_ACCESS_KEY=$(echo "$SESSION"|grep SecretAccessKey|cut -d'"' -f 4)
     export AWS_SESSION_TOKEN=$(echo "$SESSION"|grep SessionToken|cut -d'"' -f 4)
-    echo "Assuming role of $ROLE_ARN"
+    export AWS_SESSION_EXPIRY=$(echo "$SESSION"|grep Expiration|cut -d'"' -f 4)
+    export AWS_ROLE=$ROLE
+    echo "Assuming role of $ROLE_ARN until [$AWS_SESSION_EXPIRY]"
     bash
     echo "End of $ROLE_ARN"
+else
+    echo "Fail to assume the role"
 fi
 

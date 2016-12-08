@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", "750"]
     vb.customize ["modifyvm", :id, "--cpus", "2"]
     vb.customize ["modifyvm", :id, "--usb", "off"]
+    vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
   end
 
   config.vm.box = "debian/contrib-jessie64"

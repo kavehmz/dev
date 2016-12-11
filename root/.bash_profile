@@ -4,6 +4,12 @@ export GOPATH=/home/projects
 export PATH="$PATH:$SCALA_HOME/bin:$GOROOT/bin:$GOPATH/bin"
 export EDITOR=vim
 
+gps() {
+	GIT_TOKEN=$(cat /home/share/secret/github_token)
+	GIT_ORG="$(basename $(pwd))"
+	for i in *; do [ -d $i ] || continue; cd "$i"; REPO="$(basename $(pwd))"; curl --silent "https://api.github.com/repos/$GIT_ORG/$REPO/pulls?access_token=$GIT_TOKEN" | perl /home/share/parse_pr.pl $1 > /tmp/prs_ls; [ -s /tmp/prs_ls ] && (echo "repo:$i";cat /tmp/prs_ls) ;cd ..;done
+}
+
 cdg() {
     cd /home/projects/src/github.com
     [ "$1" != "" ] && cd $(echo $1|sed 's/\//*\//g'|sed 's/$/*/')

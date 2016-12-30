@@ -52,3 +52,5 @@ complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
     || complete -o default -o nospace -F _git g
 
 source /opt/perl5/etc/bashrc #perlbrewrc
+
+source /home/share/aws_assumerole.sh

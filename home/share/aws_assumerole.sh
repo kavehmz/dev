@@ -10,7 +10,6 @@ role_unset() {
 
 role_status() {
   TIMELEFT=0
-  echo
   if [ "$AWS_SESSION_EXPIRY" != "" ]
   then
     EXPEPOCH=$(date --date "$AWS_SESSION_EXPIRY" +%s)
@@ -19,7 +18,8 @@ role_status() {
 
     if [ "$TIMELEFT" -gt 0 ]
     then
-      echo "role:$ROLE("$TIMELEFT"s) "
+      echo
+      echo "assumed_role:$ROLE(expires in "$TIMELEFT"s) "
     else
       role_unset
       echo "Roe of $ROLE_ARN expired"

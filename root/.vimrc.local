@@ -1,7 +1,0 @@
-set wrap linebreak nolist
-let g:indent_guides_enable_on_vim_startup=0
-let g:ctrlp_extensions = ['tag', 'file']
-autocmd BufEnter * set mouse=v
-let g:ctrlp_working_path_mode = 'ar'
-let g:ctrlp_clear_cache_on_exit=0
-

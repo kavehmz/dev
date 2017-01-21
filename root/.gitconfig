@@ -1,0 +1,25 @@
+[alias]
+	a = add
+	b = branch
+	c = checkout
+	cls = clean -df
+	cm = commit
+	d = diff
+	dw = diff --word-diff
+	f = fetch
+	l = log
+	m = merge --no-ff
+	p = push origin HEAD
+	s = status
+	pr = pull-request
+	pp = push kavehmz HEAD
+    rst = reset --hard origin/master
+[user]
+	email = kavehmz@gmail.com
+	name = Kaveh Mousavi Zamani
+	signingkey = ED8AE023
+[color]
+	ui = auto
+	status = auto
+[commit]
+	gpgsign = true

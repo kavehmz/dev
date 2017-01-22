@@ -51,8 +51,7 @@ fi
 if [ "$(which gcloud)" == "" ]
 then
 	echo "install google cloud sdk"
-	export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-	echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+	echo "deb http://packages.cloud.google.com/apt cloud-sdk-jessie main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
 	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 	apt-get update && apt-get install -y google-cloud-sdk
 	go get google.golang.org/appengine/cmd/aedeploy

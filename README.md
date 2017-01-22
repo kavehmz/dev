@@ -5,7 +5,7 @@ My dockerized devbox
 
 ```bash
 $ cd docker
-$ docker build -t dev:latest --rm .
+$ docker build -t dev:latest .
 ```
 
 # Run

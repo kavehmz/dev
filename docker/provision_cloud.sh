@@ -9,9 +9,9 @@ then
 	go get google.golang.org/appengine/cmd/aedeploy
 	# Not enough RAM to install it through source, so using the gcloud installation
 	sed -i -e 's/true/false/' /usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/config.json
-	# gcloud components install kubectl
-	# ln -s /usr/lib/google-cloud-sdk/bin/kubectl /usr/bin/kubectl
-	# kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl
+	yes | gcloud components install kubectl
+	ln -s /usr/lib/google-cloud-sdk/bin/kubectl /usr/bin/kubectl
+	kubectl completion bash | tee /etc/bash_completion.d/kubectl
 fi
 
 if [ "$(which aws)" == "" ]

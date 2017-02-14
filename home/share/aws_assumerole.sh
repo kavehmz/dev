@@ -6,6 +6,7 @@ role_unset() {
     unset AWS_SESSION_TOKEN
     unset AWS_SESSION_EXPIRY
     unset AWS_ROLE
+    unset AWS_DEFAULT_PROFILE
 }
 
 role_status() {
@@ -19,7 +20,7 @@ role_status() {
     if [ "$TIMELEFT" -gt 0 ]
     then
       echo
-      echo "assumed_role:$ROLE(expires in "$TIMELEFT"s) "
+      echo "assumed_role:$AWS_DEFAULT_PROFILE:$ROLE(expires in "$TIMELEFT"s) "
     else
       role_unset
       echo "Roe of $ROLE_ARN expired"
@@ -28,7 +29,7 @@ role_status() {
 }
 
 assume() {
-  USAGE="Usage: assume [--profile=name] [list|role user mfa_token]"
+  USAGE="Usage: assume [-p name] [list|role user mfa_token]"
   ([ "$1" != 'list' ] && ([ "$2" == '' ] || [ "$3" == '' ] ) ) && echo $USAGE && return
 
   PROFILE='default'
@@ -46,7 +47,6 @@ assume() {
         ;;
     esac
   done
-
 
   ROLES=$(aws iam list-roles --profile=$PROFILE|grep Arn|cut -d'"' -f4)
   [ "$1" == 'list' ] && echo "$ROLES" && return
@@ -67,6 +67,7 @@ assume() {
       export AWS_SESSION_TOKEN=$(echo "$SESSION"|grep SessionToken|cut -d'"' -f 4)
       export AWS_SESSION_EXPIRY=$(echo "$SESSION"|grep Expiration|cut -d'"' -f 4)
       export AWS_ROLE=$ROLE
+      export AWS_DEFAULT_PROFILE=$PROFILE
 
       PROMPT_COMMAND=role_status
 

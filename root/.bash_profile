@@ -36,6 +36,7 @@ alias ts="perl -e 'use Time::HiRes; while(<>) { print sprintf(\"%-17s \", Time::
 alias tidy="find lib t -name '*.p[lm]' -o -name '*.t' | xargs perl -I /usr/local/perl/lib/perl5 /usr/local/perl/bin/perltidy -pro=/root/.perltidyrc --backup-and-modify-in-place -bext=tidyup;find . -name '*.tidyup' -delete"
 alias sa='ssh-agent -k 2> /dev/null;eval "$(ssh-agent -s)";ssh-add ~/.ssh/id_rsa'
 alias ct='ctags -R *'
+alias knifels='(cdg r/c;knife node list)'
 
 alias clsps='docker ps -a |tail -n +2|tr -s " "|cut -d" " -f 1|xargs docker rm -f'
 alias clsim='docker images|tail -n +2|tr -s " "|cut -d" " -f 3|xargs docker rmi -f'

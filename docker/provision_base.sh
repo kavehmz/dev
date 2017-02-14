@@ -13,7 +13,9 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 # install basic commands
 apt-get update
 apt-get install -y  ack-grep apt-utils atop build-essential cloc cpanminus curl \
-					emacs etckeeper exuberant-ctags gdb git graphviz htop \
+					dnsutils emacs etckeeper exuberant-ctags gdb git graphviz htop \
 					iotop jq libjson-perl linux-tools locate ntp \
 					python-requests sysdig tmate tmux unzip vim vim-nox
 apt-get -t jessie-backports install -y redis-server ansible
+
+apt-get clean

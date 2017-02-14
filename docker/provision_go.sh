@@ -8,7 +8,7 @@ then
 	mkdir -p /opt/go/goroot
 	tar --gzip -xf /tmp/go.tar.gz -C /tmp
 	mv /tmp/go/* /opt/go/goroot/
-	rm /tmp/go.tar.gz
+	rm /tmp/go*
 fi
 
 [ ! -d /opt/flame ] && git clone https://github.com/brendangregg/FlameGraph.git /opt/flame

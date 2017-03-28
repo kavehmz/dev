@@ -15,7 +15,7 @@ apt-get update
 apt-get install -y  ack-grep apt-utils atop build-essential cloc cpanminus curl \
 					dnsutils emacs etckeeper exuberant-ctags gdb git graphviz htop \
 					iotop jq libjson-perl linux-tools locate ntp \
-					python-requests sysdig tmate tmux unzip vim vim-nox
+					python-requests sysdig tmate tmux unzip vim vim-nox python3-pip
 apt-get -t jessie-backports install -y redis-server ansible
 
 apt-get clean

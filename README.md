@@ -5,7 +5,7 @@ My dockerized devbox
 
 ```bash
 $ cd docker
-$ docker build -t dev:latest .
+$ docker build -t --build-arg DATADOG_API_KEY=XYZ dev:latest .
 ```
 
 # Run

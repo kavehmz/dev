@@ -13,12 +13,21 @@ ADD provision_cloud.sh /opt/
 RUN chmod +x /opt/provision_cloud.sh
 RUN /opt/provision_cloud.sh
 
+ADD provision_chef.sh /opt/
+RUN chmod +x /opt/provision_chef.sh
+RUN /opt/provision_chef.sh $DATADOG_API_KEY
+
+ARG DATADOG_API_KEY
+ADD provision_dd.sh /opt/
+RUN chmod +x /opt/provision_dd.sh
+RUN /opt/provision_dd.sh $DATADOG_API_KEY
+
+ADD provision_pg.sh /opt/
+RUN chmod +x /opt/provision_pg.sh
+RUN /opt/provision_pg.sh
+
 ADD provision_go.sh /opt/
 RUN chmod +x /opt/provision_go.sh
 RUN /opt/provision_go.sh
-
-ADD provision_chef.sh /opt/
-RUN chmod +x /opt/provision_chef.sh
-RUN /opt/provision_chef.sh
 
 CMD ["/bin/bash"]

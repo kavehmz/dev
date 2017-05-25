@@ -15,12 +15,20 @@ RUN /opt/provision_cloud.sh
 
 ADD provision_chef.sh /opt/
 RUN chmod +x /opt/provision_chef.sh
-RUN /opt/provision_chef.sh $DATADOG_API_KEY
+RUN /opt/provision_chef.sh
 
 ARG DATADOG_API_KEY
 ADD provision_dd.sh /opt/
 RUN chmod +x /opt/provision_dd.sh
 RUN /opt/provision_dd.sh $DATADOG_API_KEY
+
+ADD provision_jvm.sh /opt/
+RUN chmod +x /opt/provision_jvm.sh
+RUN /opt/provision_jvm.sh
+
+ADD provision_elixir.sh /opt/
+RUN chmod +x /opt/provision_elixir.sh
+RUN /opt/provision_elixir.sh
 
 ADD provision_pg.sh /opt/
 RUN chmod +x /opt/provision_pg.sh

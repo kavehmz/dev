@@ -38,4 +38,6 @@ ADD provision_go.sh /opt/
 RUN chmod +x /opt/provision_go.sh
 RUN /opt/provision_go.sh
 
+RUN rm -rf /tmp/*
+
 CMD ["/bin/bash"]

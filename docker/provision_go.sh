@@ -7,7 +7,6 @@ then
 	mkdir -p /opt/go/goroot
 	tar --gzip -xf /tmp/go.tar.gz -C /tmp
 	mv /tmp/go/* /opt/go/goroot/
-	rm /tmp/go*
 fi
 
 [ ! -d /opt/flame ] && git clone https://github.com/brendangregg/FlameGraph.git /opt/flame
@@ -20,3 +19,4 @@ then
 	export PATH=$PATH:/opt/go/goroot/bin
 	script/build
 fi
+rm -rf /tmp/go*

@@ -1,3 +1,8 @@
+# docker build --build-arg DATADOG_API_KEY=XYZ -t dev:latest .
+# ARG DATADOG_API_KEY
+# ADD provision_dd.sh /opt/
+# RUN chmod +x /opt/provision_dd.sh
+# RUN /opt/provision_dd.sh $DATADOG_API_KEY
 DATADOG_API_KEY=$1
 
 echo "[$DATADOG_API_KEY]"

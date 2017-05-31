@@ -13,7 +13,7 @@ ls |egrep -v '^(github|gitlab)'|xargs -L 1 rm -rf
 
 echo "Removing non-standard or non-personal repositories in github"
 cd github.com
-ls|egrep -v '^(binary|regent|enoox|kaveh|kmz)'|xargs -L 1 rm -rf
+ls|egrep -v '^(enoox|kaveh|kmz)'|xargs -L 1 rm -rf
 
 echo "Installing basic packages I need"
 go get -u -v golang.org/x/tools/cmd/godoc

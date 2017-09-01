@@ -17,7 +17,7 @@ gsp() {
 # gapi forks kavehmz/prime
 # gapi rate_limit
 gapi() {
-	local GIT_TOKEN=$(cat ~/dev/home/share/secret/github_token)
+	local GIT_TOKEN=$(cat /home/share/secret/github_token)
     local CMD="$1"
     local GIT_ORG_REPO=''
     [ "$2" != "" ] && GIT_ORG_REPO="/repos/$2"
@@ -26,7 +26,7 @@ gapi() {
 
 # (cdg k/bo) => (cdg; cd k*/bo*)
 cdg() {
-    cd ~/dev/home/projects/src/github.com
+    cd /home/projects/src/github.com
     local WDIR=$(echo $1|sed 's/\//*\//g'|sed 's/-/*/g'|sed 's/$/*/')
     [ "$1" != "" ] && cd $(ls -d $WDIR|head -n1)
 }

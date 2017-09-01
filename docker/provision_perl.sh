@@ -8,5 +8,5 @@ then
 	source /opt/perl5/etc/bashrc
 	perlbrew install-cpanm
 	grep "#perlbrewrc" ~/.bash_profile -q || echo "source /opt/perl5/etc/bashrc #perlbrewrc" >> ~/.bash_profile
-	perlbrew install --notest blead
+	perlbrew install --notest stable
 fi

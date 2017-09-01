@@ -3,10 +3,10 @@
 if [ "$(which gcloud)" == "" ]
 then
 	echo "install google cloud sdk"
-	echo "deb http://packages.cloud.google.com/apt cloud-sdk-jessie main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+	echo "deb http://packages.cloud.google.com/apt cloud-sdk-stretch main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
 	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 	apt-get update && apt-get install -y google-cloud-sdk kubectl
-	kubectl completion bash | tee /etc/bash_completion.d/kubectl
+	# kubectl completion bash > /etc/bash_completion.d/kubectl
 fi
 
 if [ "$(which aws)" == "" ]

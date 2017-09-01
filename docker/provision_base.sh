@@ -4,15 +4,8 @@
 export DEBIAN_FRONTEND=noninteractive
 
 # adding extra repos
-echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie_backports.list
+echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch_backports.list
 
 # install basic commands
 apt-get update
-apt-get install -y  ack-grep apt-utils atop build-essential cloc cpanminus curl \
-					dnsutils emacs etckeeper exuberant-ctags gdb git graphviz htop \
-					iotop jq libjson-perl linux-tools locate ntp \
-					python-requests sysdig tmate tmux unzip vim vim-nox \
-					python3-pip sudo bash-completion apt-transport-https \
-					curl wget nano
-apt-get -t jessie-backports install -y redis-server ansible
-apt-get clean
+apt-get install -y git unzip apt-transport-https curl wget bzip2 build-essential

@@ -59,7 +59,7 @@ alias ff="find .|grep -i"
 alias gl='for i in $(ls -A);do printf "%-32s %s\n" "$i" "$(git log -n1 --oneline $i)";done'
 [ -f /opt/hub/bin/hub ] && alias git=/opt/hub/bin/hub
 alias ts="perl -e 'use Time::HiRes; while(<>) { print sprintf(\"%-17s \", Time::HiRes::time),"'" "'".\$_;}'"
-alias sa='ssh-agent -k 2> /dev/null;eval "$(ssh-agent -s)"'
+alias sa='ssh-agent -k 2> /dev/null;eval "$(ssh-agent -s)";ssh-add ~/.ssh/id_rsa'
 
 alias gc="source ~/.gc.sh"
 alias k8s="kubectl config view -o template --template='{{ index . "'"current-context"'" }}'|sed -e 's/^.*_//g';echo"
@@ -72,7 +72,5 @@ PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
     || complete -o default -o nospace -F _git g
-
-source /opt/perl5/etc/bashrc #perlbrewrc
 
 source /home/share/aws_assumerole.sh

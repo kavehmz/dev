@@ -19,7 +19,7 @@ RUN cd /tmp && \
     unzip awscli-bundle.zip && \
     ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-RUN curl --silent https://storage.googleapis.com/golang/go1.10rc1.linux-amd64.tar.gz -o /tmp/go.tar.gz && \
+RUN curl --silent https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz -o /tmp/go.tar.gz && \
     mkdir -p /opt/go/goroot && \
     tar --gzip -xf /tmp/go.tar.gz -C /tmp && \
     mv /tmp/go/* /opt/go/goroot/

@@ -1,6 +1,12 @@
 use JSON;
+use File::Basename;
+my $dirname = dirname(__FILE__);
 
-my $token = `cat /home/share/secret/github_token`;
+chdir $dirname;
+
+my $token = `cat secret/github_token`;
+my $orgs = $ARGV[0] || "(kavehmz|kmzarc|enoox)";
+
 chomp $token;
 my $repos = [];
 my $a;
@@ -15,21 +21,20 @@ while ($a = JSON::from_json(`curl --silent 'https://api.github.com/user/repos?ac
 my $authorized_repos = {};
 foreach my $k (@{$repos}) {
 	$count++;
-	my $fn = $k->{full_name};
+	my $fn = lc $k->{full_name};
 	print "Cloning $fn: [",$count, "/", scalar @$repos, "]\n";
-	$authorized_repos->{"/home/projects/src/github.com/$fn"} = 1;
+	$authorized_repos->{"../projects/src/github.com/$fn"} = 1;
 
-	if ($fn !~ /^(kavehmz|kmzarc|enoox)/) {
+	if ($fn !~ /^$orgs/) {
 		print "Skipping [$fn]\n";
 		next;
 	}
-	next if (-d "/home/projects/src/github.com/$fn");
-	print `git clone https://$token\@github.com/$fn /home/projects/src/github.com/$fn`;
-	`cd /home/projects/src/github.com/$fn;git remote set-url origin git\@github.com:$fn.git`;
+	next if (-d "../projects/src/github.com/$fn");
+	print `git clone https://$token\@github.com/$fn ../projects/src/github.com/$fn`;
 }
 
-foreach my $fn (split "\n", `find /home/projects/src/github.com/ -maxdepth 2 -mindepth 2 -type d `) {
-	next if ($fn !~ /^\/home\/projects\/src\/github\.com\/(kavehmz|kmzarc|enoox)/);
+foreach my $fn (split "\n", `find ../projects/src/github.com/ -maxdepth 2 -mindepth 2 -type d `) {
+	next if ($fn !~ /^\.\.\/projects\/src\/github\.com\/$orgs/);
 
 	if (not exists $authorized_repos->{$fn}) {
 		print "You have no access to this repo anymore!! : $fn\n";

@@ -1,7 +1,9 @@
 GO=~/dev/opt/go
+OS=darwin
+[ $(uname -s) == "Linux" ] && OS=linux
 
 cd $GO
-rm -rf $GO/go-darwin-amd64-bootstrap*
+rm -rf $GO/go-$OS-amd64-bootstrap*
 
 if [ "$1" == "master" ]
 then
@@ -23,13 +25,13 @@ then
 fi
 
 cd $GO/src/src
-time GOROOT_BOOTSTRAP=~/dev/opt/go/goroot GOOS=darwin GOARCH=amd64 ./bootstrap.bash
+time GOROOT_BOOTSTRAP=~/dev/opt/go/goroot GOOS=$OS GOARCH=amd64 ./bootstrap.bash
 
 if [ $? == 0 ]
 then
     cd $GO
     rm -rf goroot.back
     mv goroot goroot.back
-    mv go-darwin-amd64-bootstrap goroot
-    rm -rf $GO/go-darwin-amd64-bootstrap*
+    mv go-$OS-amd64-bootstrap goroot
+    rm -rf $GO/go-$OS-amd64-bootstrap*
 fi

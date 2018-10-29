@@ -30,7 +30,7 @@ foreach my $k (@{$repos}) {
 		next;
 	}
 	next if (-d "../projects/src/github.com/$fn");
-	print `git clone https://$token\@github.com/$fn ../projects/src/github.com/$fn`;
+	print `git clone git\@github.com:$fn.git ../projects/src/github.com/$fn`;
 }
 
 foreach my $fn (split "\n", `find ../projects/src/github.com/ -maxdepth 2 -mindepth 2 -type d `) {

@@ -31,5 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: check
+      run: pwd;ls /
     - name: Terraform Format
       run: terraform fmt -check

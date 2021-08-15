@@ -29,6 +29,7 @@ jobs:
   terraform-fmt:
     needs: [setup]
     runs-on: ubuntu-latest
+    environment: production
     defaults:
       run:
         shell: bash

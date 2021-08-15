@@ -1,0 +1,32 @@
+name: 'context'
+
+on:
+  pull_request:
+    types: [closed]
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./provision
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: 'Post the plan on the PR'
+      if: github.event.pull_request.merged == true
+      uses: actions/github-script@v4.0.2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          console.log(context)
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "terraform plan:\n```\n" + "data" +"\n```"
+          })

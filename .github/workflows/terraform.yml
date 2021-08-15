@@ -2,9 +2,15 @@ name: 'Terraform'
 
 on:
   push:
+    paths:
+      - .github/workflows/*
+      - provision/*
     branches:
     - master
   pull_request:
+    paths:
+      - .github/workflows/*
+      - provision/*
 
 defaults:
   run:

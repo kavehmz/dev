@@ -7,3 +7,5 @@ home/git/*
 home/root/*
 opt/
 home/projects/
+.terraform*
+*.tfstate*

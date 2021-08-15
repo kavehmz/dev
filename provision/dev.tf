@@ -44,7 +44,7 @@ resource "aws_subnet" "dev_us_east_1a" {
 resource "aws_instance" "dev" {
   ami           = data.aws_ami.debian.id
   instance_type = "t2.micro"
-  subnet_id   = aws_subnet.dev_us_east_1a.id
+  subnet_id     = aws_subnet.dev_us_east_1a.id
   # public_dns = true
 
   associate_public_ip_address = true
@@ -60,5 +60,5 @@ resource "aws_instance" "dev" {
 }
 
 output "dev_ip" {
-    value = aws_instance.dev.public_ip
+  value = aws_instance.dev.public_ip
 }

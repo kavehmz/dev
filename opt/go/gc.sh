@@ -1,28 +1,16 @@
 GO=~/dev/opt/go
+
+if [ ! -f $GOROOT/bin/go ]
+then
+	mkdir -p ~/dev/opt/tmpdl
+	curl -L  https://golang.org/dl/go1.16.7.darwin-arm64.tar.gz|tar -xz -C ~/dev/opt/tmpdl/
+	mv ~/dev/opt/tmpdl/go $GOROOT
+fi
+
 OS=darwin
-[ $(uname -s) == "Linux" ] && OS=linux
 
 cd $GO
 rm -rf $GO/go-$OS-arm64-bootstrap*
-
-if [ "$1" == "master" ]
-then
-	cd $GO/src/
-
-	git checkout master
-	git branch -D release-branch.custom_master
-
-	git fetch
-	git reset --hard
-
-	git checkout -b release-branch.custom_master
-
-	echo go1.99.99 > VERSION
-	git add VERSION
-	git commit -am 'Fake Version'
-	git tag -d go1.99.99
-	git tag -am 'customer tag' go1.99.99
-fi
 
 cd $GO/src/src
 time GOROOT_BOOTSTRAP=~/dev/opt/go/goroot GOOS=$OS GOARCH=arm64 ./bootstrap.bash

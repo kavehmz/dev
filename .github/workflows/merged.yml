@@ -8,6 +8,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
 
+    steps:
     - name: 'Post the plan on the PR'
       if: github.event.pull_request.merged == true
       uses: actions/github-script@v4.0.2

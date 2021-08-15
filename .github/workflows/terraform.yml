@@ -42,6 +42,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
+          console.log(context)
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           var fs = require('fs');
           var data = fs.readFileSync('/tmp/plan.out', 'utf8');
@@ -59,6 +60,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
+          console.log(context)
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           var fs = require('fs');
           var data = fs.readFileSync('/tmp/plan.out', 'utf8');

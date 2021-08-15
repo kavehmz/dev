@@ -54,15 +54,13 @@ jobs:
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           var fs = require('fs');
           try {
-              var data = fs.readFileSync('/tmp/plan.out', 'utf8');
+              var data = fs.readFileSync('/tmp/plan2.out', 'utf8');
               console.log(data);    
           } catch(e) {
               console.log('Error:', e.stack);
           }
           github.issues.createComment({ issue_number, owner, repo, body: "terraform plan:\n```\n" + data +"\n```"});
 
-      # On push to master, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve

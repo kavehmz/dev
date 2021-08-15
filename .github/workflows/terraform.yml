@@ -28,7 +28,8 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Test
-      run: echo "${TESTVAR}  : ${{ secrets.TESTVAR }}"
+      run: 
+        echo "${TESTVAR}"
       env:
         TESTVAR: ${{ secrets.TESTVAR }}
 

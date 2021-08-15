@@ -44,10 +44,14 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           var fs = require('fs');
           var data = fs.readFileSync('/tmp/plan.out', 'utf8');
-          github.issues.createComment({ issue_number, owner, repo, body: "terraform plan:\n```\n" + data +"\n```"});
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "terraform plan:\n```\n" + data +"\n```"
+          })
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'

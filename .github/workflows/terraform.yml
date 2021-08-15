@@ -53,12 +53,12 @@ jobs:
         script: |
           const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
           var fs = require('fs');
-          try {
+          # try {
               var data = fs.readFileSync('/tmp/plan2.out', 'utf8');
-              console.log(data);    
-          } catch(e) {
-              console.log('Error:', e.stack);
-          }
+          #     console.log(data);    
+          # } catch(e) {
+          #     console.log('Error:', e.stack);
+          # }
           github.issues.createComment({ issue_number, owner, repo, body: "terraform plan:\n```\n" + data +"\n```"});
 
     - name: Terraform Apply

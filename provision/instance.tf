@@ -35,5 +35,5 @@ resource "aws_instance" "dev" {
 }
 
 output "dev_ip" {
-  value = aws_instance.dev.public_ip
+  value = aws_instance.dev.*.public_ip
 }

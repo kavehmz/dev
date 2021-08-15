@@ -1,15 +1,9 @@
-# docker_dev
-My dockerized devbox
+# Dev
+This repo create dev environemnt.
+
+`provision` contains the terraform part which is triggered by creating a PR and automatically applys when merged in master.
+
+Rest of directories provide the skeleton of how my local env looks like.
 
 # Build
-
-```bash
-$ cd docker
-$ docker build -t dev:latest .
-```
-
-# Run
-
-```bash
-$ docker run -v ~/dev/home:/home -v ~/dev/root:/root -it dev /bin/bash --login
-```
+Create a PR against this repo.

@@ -29,10 +29,6 @@ jobs:
   terraform-fmt:
     needs: [setup]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./provision
 
     steps:
     - name: Terraform Format

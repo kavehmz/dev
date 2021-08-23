@@ -32,6 +32,8 @@ resource "aws_instance" "dev" {
   tags = {
     Name = "dev"
   }
+
+  user_data = file("base.sh")
 }
 
 output "dev_ip" {

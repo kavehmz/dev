@@ -16,7 +16,7 @@ data "aws_ami" "debian" {
 
 
 resource "aws_instance" "dev" {
-  count         = 0
+  count         = 1
   ami           = data.aws_ami.debian.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.dev_us_east_1a.id
@@ -32,6 +32,8 @@ resource "aws_instance" "dev" {
   tags = {
     Name = "dev"
   }
+
+  user_data = file("base.sh")
 }
 
 output "dev_ip" {

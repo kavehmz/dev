@@ -10,4 +10,4 @@ apt-get install -y git unzip apt-transport-https curl wget bzip2 build-essential
 # install go
 curl -L https://golang.org/dl/go1.17.linux-amd64.tar.gz -o /tmp/go1.17.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf /tmp/go1.17.linux-amd64.tar.gz
-echo 'export PATH=$PATH:/usr/local/go/bin' > ~/.bashrc
+echo 'export PATH=$PATH:/usr/local/go/bin' > /home/admin/.bashrc

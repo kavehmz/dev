@@ -6,7 +6,7 @@ terraform {
     }
 
     cloudflare = {
-      source = "cloudflare/cloudflare"
+      source  = "cloudflare/cloudflare"
       version = "~> 2.0"
     }
   }
@@ -25,6 +25,6 @@ terraform {
 }
 
 provider "cloudflare" {
-  email   = var.cloudflare_email
+  email     = var.cloudflare_email
   api_token = var.cloudflare_api_token
 }

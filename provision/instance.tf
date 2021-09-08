@@ -15,12 +15,14 @@ data "aws_ami" "debian" {
 }
 
 
-resource "aws_instance" "dev" {
+resource "aws_spot_instance_request" "dev" {
   count         = var.devcount
   ami           = data.aws_ami.debian.id
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.dev_us_east_1a.id
-  # public_dns = true
+
+  spot_price           = "0.0050"
+  wait_for_fulfillment = true
 
   associate_public_ip_address = true
 
@@ -28,6 +30,7 @@ resource "aws_instance" "dev" {
   vpc_security_group_ids = ["sg-007ae9d2199ea1f25", "sg-09bafcc41daecda49"]
 
   key_name = "Kaveh"
+
 
   tags = {
     Name = "dev"
@@ -37,5 +40,5 @@ resource "aws_instance" "dev" {
 }
 
 output "dev_ip" {
-  value = aws_instance.dev.*.public_ip
+  value = aws_spot_instance_request.dev.*.public_ip
 }

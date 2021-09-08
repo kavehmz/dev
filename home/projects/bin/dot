@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# pipe all the calls to dot I need to pprof and other tools to my devbox.
+# I do not want to install these tools locally
+cat | ssh admin@dev0.zamani.me "dot ${@}"

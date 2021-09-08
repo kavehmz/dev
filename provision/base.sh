@@ -5,7 +5,7 @@ echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/source
 
 # install basic commands
 apt-get update
-apt-get install -y git unzip apt-transport-https curl wget bzip2 build-essential ack-grep apt-utils htop jq tmate tmux nano
+apt-get install -y git unzip apt-transport-https curl wget bzip2 build-essential ack-grep apt-utils htop jq tmate tmux nano graphviz
 
 # install go
 curl -L https://golang.org/dl/go1.17.linux-amd64.tar.gz -o /tmp/go1.17.linux-amd64.tar.gz

@@ -4,6 +4,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3"
     }
+
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+      version = "~> 2.0"
+    }
   }
 }
 
@@ -17,4 +22,9 @@ terraform {
     key    = "home"
     region = "us-east-1"
   }
+}
+
+provider "cloudflare" {
+  email   = var.cloudflare_email
+  api_token = var.cloudflare_api_token
 }

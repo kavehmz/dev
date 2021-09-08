@@ -75,4 +75,3 @@ jobs:
         TF_VAR_cloudflare_email: ${{ secrets.TF_VAR_cloudflare_email }}
         TF_VAR_cloudflare_zone_id: ${{ secrets.TF_VAR_cloudflare_zone_id }}
         TF_VAR_cloudflare_api_token: ${{ secrets.TF_VAR_cloudflare_api_token }}
-

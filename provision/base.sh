@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-
+set -e
 # adding extra repos
 echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch_backports.list
 
 # install basic commands
 apt-get update
-apt-get install -y git unzip apt-transport-https curl wget bzip2 build-essential ack-grep apt-utils htop jq tmate tmux nano graphviz
+apt-get install -y git unzip apt-transport-https curl wget bzip2 build-essential ack-grep apt-utils htop jq tmate tmux nano graphviz locales-all
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -13,7 +13,7 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
-apt-get install docker-ce docker-ce-cli containerd.io
+apt-get install -y docker-ce docker-ce-cli containerd.io
 usermod -aG docker admin
 
 # kubectl

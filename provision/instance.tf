@@ -14,7 +14,6 @@ data "aws_ami" "debian" {
   owners = ["136693071363"]
 }
 
-
 resource "aws_instance" "dev" {
   count         = var.devcount
   ami           = data.aws_ami.debian.id

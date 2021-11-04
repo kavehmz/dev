@@ -18,10 +18,10 @@ data "aws_ami" "debian" {
 resource "aws_spot_instance_request" "dev" {
   count         = var.devcount
   ami           = data.aws_ami.debian.id
-  instance_type = "t3.xlarge"
+  instance_type = "t3.large"
   subnet_id     = aws_subnet.dev_us_east_1a.id
 
-  spot_price           = "0.0050"
+  # spot_price           = "0.0050"
   wait_for_fulfillment = true
 
   associate_public_ip_address = true

@@ -17,7 +17,7 @@ data "aws_ami" "debian" {
 # resource "aws_instance" "dev" {
 resource "aws_spot_instance_request" "dev" {
   wait_for_fulfillment = true
-  spot_type = "one-time"
+  spot_type            = "one-time"
 
   count         = var.devcount
   ami           = data.aws_ami.debian.id

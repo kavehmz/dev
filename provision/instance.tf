@@ -35,7 +35,7 @@ resource "aws_spot_instance_request" "dev" {
     Name = "dev"
   }
 
-  user_data = file("base.sh")
+  user_data = file("scripts/base.sh")
 
   ephemeral_block_device {
     device_name  = "xvdb"
@@ -43,6 +43,17 @@ resource "aws_spot_instance_request" "dev" {
     virtual_name = "ephemeral0"
   }
 
+  provisioner "file" {
+    source      = "scripts/kind-build.sh"
+    destination = "~/kind-build.sh"
+
+    connection {
+      type     = "ssh"
+      user     = "admin"
+      private_key = file("~/.ssh/id_rsa")
+      host = self.public_ip
+    }
+  }
 }
 
 

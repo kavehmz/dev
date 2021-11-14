@@ -9,3 +9,4 @@ opt/
 home/projects/
 .terraform*
 *.tfstate*
+*.tfvars

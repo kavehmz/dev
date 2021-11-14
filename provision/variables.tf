@@ -8,7 +8,13 @@ variable "cloudflare_zone_id" {
   sensitive = true
 }
 
-variable "devcount" {
+variable "dev_count" {
   type    = number
   default = 1
 }
+
+variable "dev_k8s_workders_count" {
+  type    = number
+  default = 1
+}
+

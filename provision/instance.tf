@@ -19,7 +19,7 @@ resource "aws_spot_instance_request" "dev" {
   wait_for_fulfillment = true
   spot_type            = "one-time"
 
-  count         = var.devcount
+  count         = var.dev_count
   ami           = data.aws_ami.debian.id
   instance_type = "m1.large"
   subnet_id     = aws_subnet.dev_us_east_1a.id

@@ -16,26 +16,25 @@ data "aws_ami" "debian" {
 
 # resource "aws_instance" "dev" {
 resource "aws_spot_instance_request" "dev" {
+  count = var.dev_count
+
   wait_for_fulfillment = true
   spot_type            = "one-time"
 
-  count         = var.dev_count
   ami           = data.aws_ami.debian.id
   instance_type = "m1.large"
+
   subnet_id     = aws_subnet.dev_us_east_1a.id
-
   associate_public_ip_address = true
-
-
   vpc_security_group_ids = [aws_security_group.all_access.id]
+  key_name = "dev"
 
-  key_name = "Kaveh"
-
-  tags = {
-    Name = "dev"
+  root_block_device {
+    volume_size = 20
+    tags = {
+      "Name" = "dev${count.index}"
+    }
   }
-
-  user_data = file("scripts/base.sh")
 
   ephemeral_block_device {
     device_name  = "xvdb"
@@ -43,17 +42,21 @@ resource "aws_spot_instance_request" "dev" {
     virtual_name = "ephemeral0"
   }
 
-  provisioner "file" {
-    source      = "scripts/kind-build.sh"
-    destination = "~/kind-build.sh"
+  user_data = file("scripts/base.sh")
+}
 
-    connection {
-      type     = "ssh"
-      user     = "admin"
-      private_key = file("~/.ssh/id_rsa")
-      host = self.public_ip
-    }
-  }
+resource "aws_ec2_tag" "dev_tags" {
+  count = var.dev_count
+  resource_id = aws_spot_instance_request.dev[count.index].spot_instance_id
+  key         = "Name"
+  value       = "dev${count.index}"
+}
+
+resource "aws_ec2_tag" "dev_root_tags" {
+  count = var.dev_count
+  resource_id = aws_spot_instance_request.dev[count.index].root_block_device.0.volume_id
+  key         = "Name"
+  value       = "dev${count.index}"
 }
 
 

@@ -17,4 +17,7 @@ variable "dev_k8s_workders_count" {
   type    = number
   default = 1
 }
-
+variable "k8s_enabled" {
+  type    = bool
+  default = false
+}

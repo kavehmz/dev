@@ -19,7 +19,7 @@ resource "aws_spot_instance_request" "dev" {
   count = var.dev_count
 
   wait_for_fulfillment = true
-  # spot_type            = "one-time"
+  spot_type            = "one-time"
   # spot_price = "10"
 
   ami           = data.aws_ami.debian.id

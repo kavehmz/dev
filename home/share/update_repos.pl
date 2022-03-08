@@ -7,11 +7,14 @@ chdir $dirname;
 my $token = `cat secret/github_token`;
 my $orgs = $ARGV[0] || "(kavehmz|kmzarc|enoox)";
 
+
+print "[$token]\n";
+
 chomp $token;
 my $repos = [];
 my $a;
 my $page = 1;
-while ($a = JSON::from_json(`curl --silent 'https://api.github.com/user/repos?access_token=$token&page=$page'`) and (scalar @$a>0))
+while ($a = JSON::from_json(`curl --silent -H 'Authorization: token $token' 'https://api.github.com/user/repos?access_token=$token&page=$page'`) and (scalar @$a>0))
 {
 	print "page $page\n";
 	$page++;

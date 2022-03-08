@@ -1,7 +1,1 @@
-#!/usr/bin/env bash
-
-# I do not want to install extra software on my local
-# I will use my remove dev environment to sign the commits
-cat ~/.gnupg/private.key | ssh admin@dev0.zamani.me 'gpg --import'
-cat | ssh admin@dev0.zamani.me "gpg ${@}"
-ssh admin@dev0.zamani.me 'rm -rf ~/.gnupg'
+/Users/kaveh/dev/home/projects/src/github.com/kavehmz/boost/gpg.sh

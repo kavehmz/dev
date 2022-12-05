@@ -20,7 +20,7 @@ resource "aws_spot_instance_request" "dev" {
 
   wait_for_fulfillment = true
   spot_type            = "persistent"
-  # spot_price = "10"
+  spot_price           = "0.1"
 
   ami           = data.aws_ami.debian.id
   instance_type = "t3.micro"
@@ -31,13 +31,14 @@ resource "aws_spot_instance_request" "dev" {
   key_name                    = "dev"
 
   root_block_device {
-    volume_size = 10
+    volume_size           = 10
+    delete_on_termination = false
     tags = {
       "Name" = "dev${count.index}"
     }
   }
 
-  user_data = file("scripts/base.sh")
+  user_data = file("scripts/silverbullet.sh")
 }
 
 resource "aws_ec2_tag" "dev_tags" {

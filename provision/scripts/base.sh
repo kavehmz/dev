@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 # adding extra repos
-echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch_backports.list
+echo "deb http://ftp.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/bullseye_backports.list
 
 # install basic commands
 apt-get update
